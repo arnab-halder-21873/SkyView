@@ -1,4 +1,4 @@
-package com.rocketman.skyview;
+package com.rocketman.skyview.logging;
 
 public class Main {
     public static void main(String[] args) {

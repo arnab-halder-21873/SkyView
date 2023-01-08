@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/auth")
-public class UserController {
+public class UploadController {
 
     @RequestMapping("/user")
     public ResponseEntity<String> now(){

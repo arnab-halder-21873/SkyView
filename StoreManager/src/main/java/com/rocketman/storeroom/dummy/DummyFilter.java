@@ -1,7 +1,5 @@
-package com.rocketman.storeroom.config.security;
+package com.rocketman.storeroom.dummy;
 
-import com.rocketman.storeroom.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -15,7 +13,7 @@ import java.io.IOException;
 import org.springframework.http.HttpHeaders;
 
 @Configuration
-public class CustomBasicFilter extends OncePerRequestFilter {
+public class DummyFilter extends OncePerRequestFilter {
 
 
     /*@Autowired
