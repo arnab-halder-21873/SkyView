@@ -2,6 +2,7 @@ package com.rocketman.skyview.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +16,20 @@ public class GlobalFilterImpl implements GlobalFilter {
 
     //GlobalFilter from Gateway enables us to add filter for all requests flowing in through gateway
 
+    @Value("${this.is.now.stored.in.vault}") String secretInVault;
+
+
     Logger LOG = LoggerFactory.getLogger(GlobalFilterImpl.class);
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
+
+        LOG.info(">>>>>>>>>>>>>>" +  secretInVault + "<<<<<<<<<<<<<<<");
+        //Vault location [secret/api-gateway] not resolvable: Not found
+
         LOG.info("=========ENTERED in Custom GLobalFilterImpl REQUEST==========");
         LOG.info("========="+ exchange.getRequest().getLocalAddress().toString() + "=========");
         ServerHttpRequest request = exchange.getRequest();
-
         if(request.getURI().toString().contains("/")) LOG.info("========="+ request.getURI().toString() + "=========");
         //We can give custom logic for our URIs this way
 

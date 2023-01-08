@@ -1,5 +1,6 @@
 package com.rocketman.skyview;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
         ManagementWebSecurityAutoConfiguration.class})
 @EnableEurekaClient
 @EnableConfigServer
+//@CircuitBreaker(name="api-gateway", fallback=fallbackApiGateway)
+//Need to annotate where we will call the method of <name> service,
+//and define the fallback with the method name and signature of caller method.
 public class ConfigServerMain {
     public static void main(String[] args) {
 
