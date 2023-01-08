@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-
 @EnableEurekaClient
 public class ApiGatewayMain {
     public static void main(String[] args) {
