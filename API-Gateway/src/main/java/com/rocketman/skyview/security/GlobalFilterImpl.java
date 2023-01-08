@@ -39,3 +39,17 @@ public class GlobalFilterImpl implements GlobalFilter {
         }));
     }
 }
+
+
+
+/*
+2023-01-08 17:59:42.937  INFO [api-gateway,9df2750c8a489ea0,9df2750c8a489ea0] 474629 --- [nio-8900-exec-7] c.r.skyview.security.GlobalFilterImpl    : =========ENTERED in Custom GLobalFilterImpl REQUEST==========
+2023-01-08 17:59:42.938  INFO [api-gateway,9df2750c8a489ea0,9df2750c8a489ea0] 474629 --- [nio-8900-exec-7] c.r.skyview.security.GlobalFilterImpl    : =========/127.0.0.1:8900=========
+2023-01-08 17:59:42.938  INFO [api-gateway,9df2750c8a489ea0,9df2750c8a489ea0] 474629 --- [nio-8900-exec-7] c.r.skyview.security.GlobalFilterImpl    : =========http://localhost:8900/api-gateway/default=========
+2023-01-08 17:59:44.383  INFO [api-gateway,9df2750c8a489ea0,9df2750c8a489ea0] 474629 --- [or-http-epoll-2] c.r.skyview.security.GlobalFilterImpl    : =========ENTERED in Custom GLobalFilterImpl RESPONSE==========
+2023-01-08 17:59:44.384  INFO [api-gateway,9df2750c8a489ea0,9df2750c8a489ea0] 474629 --- [or-http-epoll-2] c.r.skyview.security.GlobalFilterImpl    : =========200 OK==========
+
+[api-gateway,9df2750c8a489ea0,9df2750c8a489ea0]
+MS Name, traceID, SpanID
+
+*/
