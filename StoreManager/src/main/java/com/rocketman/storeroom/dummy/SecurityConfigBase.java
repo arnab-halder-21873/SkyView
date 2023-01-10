@@ -13,20 +13,62 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
+@EnableWebSecurity
+public class SecurityConfigBase {
 
-public class SecurityConfigBase extends WebSecurityConfigurerAdapter {
 
-    public UserRepository userRepo;
+
+    @Bean
+    UserDetailsService userDetailsService() {
+        UserDetails userDetails
+                = User.withUsername("user")
+                    .password("{bcrypt}password")
+                    //.passwordEncoder(BCryptPasswordEncoder.class)
+                    .authorities("USER")
+                    .roles("USER").build();
+
+
+        return new InMemoryUserDetailsManager(userDetails);
+    }
+
+
+
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http
+                .authorizeHttpRequests((authorize) -> authorize
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(withDefaults())
+                .formLogin(withDefaults());
+        // @formatter:on
+        return http.build();
+    }
+
+
+
+
+
+}
+    /*public UserRepository userRepo;
 
     public FilterRegistrationBean<DummyFilter> registerFilter() {
 
@@ -77,11 +119,11 @@ public class SecurityConfigBase extends WebSecurityConfigurerAdapter {
                 .build();
     }
 
-   /* @Bean
+   *//* @Bean
     UserDetailsService customUserDetailsService(UserRepository users) {
         return (username) -> users.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
-    }*/
+    }*//*
 
     @Bean
     AuthenticationManager customAuthenticationManager(UserDetailsService userDetailsService, PasswordEncoder encoder) {
@@ -97,6 +139,5 @@ public class SecurityConfigBase extends WebSecurityConfigurerAdapter {
 
             return new UsernamePasswordAuthenticationToken(username, null, user.getAuthorities());
         };
-    }
+    }*/
 
-}

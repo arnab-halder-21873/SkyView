@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import org.springframework.http.HttpHeaders;
 
-@Configuration
+//@Configuration
 public class DummyFilter extends OncePerRequestFilter {
 
 
